@@ -83,7 +83,21 @@ def perna_d():
 erro = 0
 def errado (erro):
     if erro == 1:
-        print (cabeca())
+        print(cabeca())
+    if erro == 2:
+        print(corpo())
+    if erro == 3:
+        print(braco_e())
+    if erro == 4:
+        print(braco_d())
+    if erro == 5:
+        print(perna_e())
+    if erro == 6:
+        print(perna_d())
+    if erro > 6:
+        input("Você perdeu,deseja jogar novamente?[S ou N]")
+        
+        
 
         
 while True:
