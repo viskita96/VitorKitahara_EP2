@@ -1,13 +1,31 @@
 # VitorKitahara_EP2
 #Vitor Shin Kitahara
 from turtle import *
-import random
+from random import choice
 file=open('projeto2.txt','r+',encoding='utf-8')
-letra=textinput("Jogo da Forca", "Por favor, digite uma letra:")
-
-penup()
 window=Screen()
 alfredo=Turtle()
+
+palavra=file.readlines()
+sorteio=choice(palavra)
+print (sorteio)
+x=len(sorteio) 
+penup()
+setpos(-200,-200)
+pencolor("orange")
+
+for i in sorteio: #desenha as linhas
+    if i==' ':
+        penup()
+        fd(30)
+    else:
+        pendown()
+        fd(30)
+        penup()
+        fd(7)
+           
+pencolor("Black")           
+penup()
 setpos(-200,-200)
 speed(8)
 left(90)
@@ -18,7 +36,7 @@ fd(200)
 right(90)
 fd(20)
 
-def cabeça():
+def cabeca():
     pencolor("red") #desenha a cabeça
     right(90)
     circle(50)
@@ -62,18 +80,24 @@ def perna_d():
     right(90)
     fd(100)
 
-palavra=file.readlines()
-sorteio=random.choice(palavra)
-print (sorteio)
-x=len(sorteio)
+erro = 0
+def errado (erro):
+    if erro == 1:
+        print (cabeca())
 
-for i in range (x):
-    if sorteio==' ':
-        penup()
-        setpos(-200,-200)
-        pendown()
-        left(45)
-        fd(20)
+        
+while True:
+    letra=textinput("Jogo da Forca", "Por favor, digite uma letra:").lower().strip()
     
+    if letra in sorteio:
+        y=sorteio.index(letra)
+        set(-200+30*y,0)
+        write(letra)
+    else:
+        erro+=1
+        errado(erro)
+    
+    
+
 
 window.exitonclick()
