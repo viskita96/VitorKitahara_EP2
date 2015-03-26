@@ -1,84 +1,85 @@
 # VitorKitahara_EP2
 #Vitor Shin Kitahara
-from turtle import *
+import turtle
 from random import choice
 file=open('projeto2.txt','r+',encoding='utf-8')
-window=Screen()
-alfredo=Turtle()
+window=turtle.Screen()
+t1=turtle.Turtle()
+t2=turtle.Turtle()
 
 palavra=file.readlines()
 sorteio=choice(palavra)
 print (sorteio)
 x=len(sorteio) 
-penup()
-setpos(-200,-200)
-pencolor("orange")
+t2.penup()
+t2.setpos(-200,-200)
+t2.pencolor("orange")
 
 for i in sorteio: #desenha as linhas
     if i==' ':
-        penup()
-        fd(30)
+        t2.penup()
+        t2.fd(30)
     else:
-        pendown()
-        fd(30)
-        penup()
-        fd(7)
+        t2.pendown()
+        t2.fd(30)
+        t2.penup()
+        t2.fd(7)
            
-pencolor("Black")           
-penup()
-setpos(-200,-200)
-speed(8)
-left(90)
-pendown()
-fd(500)
-right(90)
-fd(200)
-right(90)
-fd(20)
+t1.pencolor("Black")           
+t1.penup()
+t1.setpos(-200,-200)
+t1.speed(8)
+t1.left(90)
+t1.pendown()
+t1.fd(500)
+t1.right(90)
+t1.fd(200)
+t1.right(90)
+t1.fd(20)
 
 def cabeca():
-    pencolor("red") #desenha a cabeça
-    right(90)
-    circle(50)
-    left(90)
-    penup()
-    fd(100)
+    t1.pencolor("red") #desenha a cabeça
+    t1.right(90)
+    t1.circle(50)
+    t1.left(90)
+    t1.penup()
+    t1.fd(100)
 
 def corpo():
-    pendown() #desenha corpo
-    fd(250)
-    right(180)
+    t1.pendown() #desenha corpo
+    t1.fd(250)
+    t1.right(180)
 
 def braco_e():
-    penup() #desenha braço
-    fd(200)
-    left(120)
-    pendown()
-    fd(100)
-    penup()
-    right(180)
-    fd(100)
+    t1.penup() #desenha braço
+    t1.fd(200)
+    t1.left(120)
+    t1.pendown()
+    t1.fd(100)
+    t1.penup()
+    t1.right(180)
+    t1.fd(100)
 
 def braco_d():
-    right(60) #desenha braço
-    pendown()
-    fd(100)
-    penup()
-    right(180)
-    fd(100)
+    t1.right(60) #desenha braço
+    t1.pendown()
+    t1.fd(100)
+    t1.penup()
+    t1.right(180)
+    t1.fd(100)
     
 def perna_e():
-    left(120) #desenha perna
-    fd(200)
-    pendown()
-    right(45)
-    fd(100)
+    t1.left(120) #desenha perna
+    t1.fd(200)
+    t1.pendown()
+    t1.right(45)
+    t1.fd(100)
 
 def perna_d():
-    right(180) #desenha perna
-    fd(100)
-    right(90)
-    fd(100)
+    t1.right(180) #desenha perna
+    t1.fd(100)
+    t1.right(90)
+    t1.fd(100)
 
 erro = 0
 def errado (erro):
@@ -95,18 +96,19 @@ def errado (erro):
     if erro == 6:
         print(perna_d())
     if erro > 6:
-        input("Você perdeu,deseja jogar novamente?[S ou N]")
-        
-        
-
+        resposta=window.textinput("Você perdeu,deseja jogar novamente?[S ou N]").lower()
+        if resposta == 's'
+                    
         
 while True:
-    letra=textinput("Jogo da Forca", "Por favor, digite uma letra:").lower().strip()
+    letra=window.textinput("Jogo da Forca", "Por favor, digite uma letra:").lower().strip()
+    a=sorteio.count(letra)
     
     if letra in sorteio:
-        y=sorteio.index(letra)
-        set(-200+30*y,0)
-        write(letra)
+        for i in range(len(sorteio)):
+            if letra == sorteio[i]:
+                t2.setpos(-200+39*i,-200)
+                t2.write(letra, font=("Arial",25, "normal"))
     else:
         erro+=1
         errado(erro)
