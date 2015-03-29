@@ -2,11 +2,18 @@
 #Vitor Shin Kitahara
 import turtle
 from random import choice
+from turtle import *
+import sys
+import os
 file=open('projeto2.txt','r+',encoding='utf-8')
 window=turtle.Screen()
 t1=turtle.Turtle()
 t2=turtle.Turtle()
 
+def restart_program():
+    python=sys.executable
+    os.execl(python, python, * sys.argv)
+    
 palavra=file.readlines()
 sorteio=choice(palavra)
 print (sorteio)
@@ -96,12 +103,15 @@ def errado (erro):
     if erro == 6:
         print(perna_d())
     if erro > 6:
-        resposta=window.textinput("Você perdeu,deseja jogar novamente?[S ou N]").lower()
-        if resposta == 's'
-                    
-        
+        resposta=input("Você perdeu,deseja jogar novamente?[S ou N]").lower()
+        if resposta == 'n':
+            print("Volte Sempre")
+            sys.exit()   
+        if resposta == "s":
+            restart_program()
+            
 while True:
-    letra=window.textinput("Jogo da Forca", "Por favor, digite uma letra:").lower().strip()
+    letra=textinput("Jogo da Forca", "Por favor, digite uma letra:").lower().strip()
     a=sorteio.count(letra)
     
     if letra in sorteio:
