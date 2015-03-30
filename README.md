@@ -5,10 +5,13 @@ from random import choice
 from turtle import *
 import sys
 import os
+import tkinter
 file=open('projeto2.txt','r+',encoding='utf-8')
 window=turtle.Screen()
 t1=turtle.Turtle()
 t2=turtle.Turtle()
+t1.hideturtle()
+t2.hideturtle()
 
 def restart_program():
     python=sys.executable
@@ -35,7 +38,7 @@ for i in sorteio: #desenha as linhas
 t1.pencolor("Black")           
 t1.penup()
 t1.setpos(-200,-200)
-t1.speed(8)
+t1.speed(10)
 t1.left(90)
 t1.pendown()
 t1.fd(500)
@@ -89,41 +92,54 @@ def perna_d():
     t1.fd(100)
 
 erro = 0
-def errado (erro):
+def errado(erro):
     if erro == 1:
-        print(cabeca())
+        (cabeca())
     if erro == 2:
-        print(corpo())
+        (corpo())
     if erro == 3:
-        print(braco_e())
+        (braco_e())
     if erro == 4:
-        print(braco_d())
+        (braco_d())
     if erro == 5:
-        print(perna_e())
+        (perna_e())
     if erro == 6:
-        print(perna_d())
+        (perna_d())
     if erro > 6:
-        resposta=input("Você perdeu,deseja jogar novamente?[S ou N]").lower()
-        if resposta == 'n':
-            print("Volte Sempre")
+        resposta=tkinter.messagebox.askyesno("Loser", "Você perdeu,deseja jogar novamente?")
+        if resposta == False:
+            tkinter.messagebox.showinfo("Volte Sempre", "Volte Sempre")
             sys.exit()   
-        if resposta == "s":
+        if resposta == True:
             restart_program()
-            
-while True:
-    letra=textinput("Jogo da Forca", "Por favor, digite uma letra:").lower().strip()
-    a=sorteio.count(letra)
-    
+                   
+while erro<7:
+    valido = False     
+    while valido == False:       
+        letra=textinput("Jogo da Forca", "Por favor, digite uma letra:").lower().strip()
+        if len(letra)>1:
+            tkinter.messagebox.showinfo("Erro", "Digite apenas uma letra")         
+        if letra not in sorteio:
+            erro+=1
+            errado(erro)      
+            valido = False        
+        else:
+            valido = True
+        a=sorteio.count(letra)
+          
     if letra in sorteio:
         for i in range(len(sorteio)):
             if letra == sorteio[i]:
                 t2.setpos(-200+39*i,-200)
                 t2.write(letra, font=("Arial",25, "normal"))
-    else:
-        erro+=1
-        errado(erro)
-    
-    
-
-
+            if letra == "a" and sorteio[i] == "ã":
+                t2.setpos(-200+39*i,-200)
+                t2.write(sorteio[i], font=("Arial",25, "normal"))
+            if letra == "o" and sorteio[i] == "ô" or sorteio[i] == "ó":
+                t2.setpos(-200+39*i,-200)
+                t2.write(sorteio[i], font=("Arial",25, "normal"))
+            if letra == "i" and sorteio[i] == "í":
+                t2.setpos(-200+39*i,-200)
+                t2.write(sorteio[i], font=("Arial",25, "normal"))
+           
 window.exitonclick()
