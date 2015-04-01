@@ -1,11 +1,13 @@
 # VitorKitahara_EP2
 #Vitor Shin Kitahara
+
 import turtle
 from random import choice
 from turtle import *
 import sys
 import os
 import tkinter
+import string
 file=open('projeto2.txt','r+',encoding='utf-8')
 window=turtle.Screen()
 t1=turtle.Turtle()
@@ -113,33 +115,34 @@ def errado(erro):
         if resposta == True:
             restart_program()
                    
-while erro<7:
-    valido = False     
+while erro<6:
+    valido = False    
+    found=0
     while valido == False:       
         letra=textinput("Jogo da Forca", "Por favor, digite uma letra:").lower().strip()
         if len(letra)>1:
-            tkinter.messagebox.showinfo("Erro", "Digite apenas uma letra")         
-        if letra not in sorteio:
+            tkinter.messagebox.showinfo("Erro", "Digite apenas uma letra") 
+   
+        if letra in sorteio:
+            for i in range(len(sorteio)):
+               if letra == sorteio[i]:
+                   t2.setpos(-200+39*i,-200)
+                   t2.write(letra, font=("Arial",25, "normal")) 
+                   found=1
+               if letra == "a" and sorteio[i] == "ã":
+                   t2.setpos(-200+39*i,-200)
+                   t2.write(sorteio[i], font=("Arial",25, "normal"))
+                   found=1
+               if letra == "o" and sorteio[i] == "ô" or sorteio[i] == "ó":
+                   t2.setpos(-200+39*i,-200)
+                   t2.write(sorteio[i], font=("Arial",25, "normal"))
+                   found=1
+               if letra == "i" and sorteio[i] == "í":
+                   t2.setpos(-200+39*i,-200)
+                   t2.write(sorteio[i], font=("Arial",25, "normal"))
+                   found=1
+        if letra not in sorteio or found==0:
             erro+=1
             errado(erro)      
-            valido = False        
-        else:
-            valido = True
-        a=sorteio.count(letra)
-          
-    if letra in sorteio:
-        for i in range(len(sorteio)):
-            if letra == sorteio[i]:
-                t2.setpos(-200+39*i,-200)
-                t2.write(letra, font=("Arial",25, "normal"))
-            if letra == "a" and sorteio[i] == "ã":
-                t2.setpos(-200+39*i,-200)
-                t2.write(sorteio[i], font=("Arial",25, "normal"))
-            if letra == "o" and sorteio[i] == "ô" or sorteio[i] == "ó":
-                t2.setpos(-200+39*i,-200)
-                t2.write(sorteio[i], font=("Arial",25, "normal"))
-            if letra == "i" and sorteio[i] == "í":
-                t2.setpos(-200+39*i,-200)
-                t2.write(sorteio[i], font=("Arial",25, "normal"))
-           
+            valido = False               
 window.exitonclick()
